@@ -1,0 +1,21 @@
+<div class="card">
+  <p-toast />
+  <p-table [columns]="cols" [value]="products" [tableStyle]="{ 'min-width': '50rem' }" selectionMode="single" [(selection)]="selectedProduct" (onRowSelect)="onRowSelected($event)">
+      <ng-template #header let-columns>
+          <tr>
+              <th *ngFor="let col of columns">
+                  {{ col.header }}
+              </th>
+          </tr>
+      </ng-template>
+      <ng-template #body let-rowData let-columns="columns">
+          <tr [pSelectableRow] >
+              <td *ngFor="let col of columns">
+                  {{ rowData[col.field] }}
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</div>
+<p-toolbar><button pButton  severity="success" pbutton (click)="dialog.showDialog()">new </button></p-toolbar>
+<app-dialog #dialog></app-dialog>
