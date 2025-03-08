@@ -1,7 +1,11 @@
 <div class="card">
-  <p-menubar [model]="items" ><ng-template #end>
-    <div class="flex items-center gap-2">
+  <p-menubar [model]="items"
+    ><ng-template #end>
+      <div class="flex items-center gap-2">
         <input type="text" pInputText placeholder="Search" class="w-36" />
-    </div>
-</ng-template></p-menubar>
+        <button pButton (click)="toggleDarkMode()">Dark Mode</button>
+      </div>
+    </ng-template>
+    <ng-template #end> <div class="flex items-center gap-2"></div> </ng-template
+  ></p-menubar>
 </div>

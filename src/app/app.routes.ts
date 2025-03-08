@@ -4,8 +4,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
 export const routes: Routes = [
-    { path: 'home', component: HomeComponentComponent },
-    { path: '', component: MenuBarComponent },
-    { path: '',   redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundComponent },
+  { path: 'home', component: HomeComponentComponent },
+  { path: '', component: MenuBarComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
