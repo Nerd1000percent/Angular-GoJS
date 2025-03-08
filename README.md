@@ -2,6 +2,8 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
 
+To use select a product and click open to navigate to diagram, will more features. 
+
 ## Development server
 
 To start a local development server, run:
