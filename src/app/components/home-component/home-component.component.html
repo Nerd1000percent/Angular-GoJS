@@ -24,9 +24,30 @@
     </ng-template>
   </p-table>
 </div>
-<p-toolbar
-  ><button pButton severity="success" pbutton (click)="dialog.showDialog()">
-    new
-  </button></p-toolbar
->
+<p-toolbar> <ng-template #end> </ng-template></p-toolbar>
+
+<p-toolbar>
+  <ng-template #start> </ng-template>
+  <ng-template #center>
+    <button
+      class="mr-2"
+      pButton
+      severity="success"
+      pbutton
+      (click)="dialog.showDialog()"
+    >
+      new
+    </button>
+    <button
+      class="mr-2"
+      pButton
+      severity="success"
+      pbutton
+      (click)="navigateToDiagram()"
+    >
+      Open
+    </button>
+  </ng-template>
+  <ng-template #end> </ng-template>
+</p-toolbar>
 <app-dialog #dialog></app-dialog>

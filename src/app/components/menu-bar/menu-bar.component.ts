@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-menu-bar',
   imports: [
@@ -28,11 +29,15 @@ import { MenubarModule } from 'primeng/menubar';
 })
 export class MenuBarComponent implements OnInit {
   items!: MenuItem[];
+  constructor(private router: Router) {}
   ngOnInit(): void {
     this.items = [
       {
         label: 'Home',
         icon: 'pi pi-home',
+        command: () => {
+          this.router.navigate(['/home']);
+        },
       },
       {
         label: 'Features',

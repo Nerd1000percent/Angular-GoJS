@@ -11,6 +11,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-component',
@@ -30,7 +31,10 @@ import { DialogComponent } from '../dialog/dialog.component';
   providers: [MessageService],
 })
 export class HomeComponentComponent implements OnInit, AfterViewInit {
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private router: Router,
+  ) {}
 
   ngAfterViewInit(): void {
     console.log(this.selectedProduct);
@@ -59,5 +63,9 @@ export class HomeComponentComponent implements OnInit, AfterViewInit {
       summary: 'Product Selected',
       detail: event.data,
     });
+  }
+
+  navigateToDiagram() {
+    this.router.navigate(['/diagram']);
   }
 }
