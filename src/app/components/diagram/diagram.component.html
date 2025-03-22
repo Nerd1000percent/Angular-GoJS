@@ -1,17 +1,15 @@
-<gojs-diagram
-  [initDiagram]="initDiagram"
-  [nodeDataArray]="state.diagramNodeData"
-  [linkDataArray]="state.diagramLinkData"
-  [modelData]="state.diagramModelData"
-  [skipsDiagramUpdate]="state.skipsDiagramUpdate"
-  (modelChange)="diagramModelChange($event)"
-  [divClassName]="diagramDivClassName"
->
-</gojs-diagram>
+<div style="display: flex; flex-direction: row">
+  <gojs-palette
+    [initPalette]="initPalette"
+    [divClassName]="paletteDivClassName"
+  >
+  </gojs-palette>
 
-<gojs-palette
-  [initPalette]="initPalette"
-  [nodeDataArray]="state.paletteNodeData"
-  [divClassName]="paletteDivClassName"
->
-</gojs-palette>
+  <gojs-diagram
+    [initDiagram]="initDiagram"
+    [skipsDiagramUpdate]="state.skipsDiagramUpdate"
+    (modelChange)="diagramModelChange($event)"
+    [divClassName]="diagramDivClassName"
+  >
+  </gojs-diagram>
+</div>

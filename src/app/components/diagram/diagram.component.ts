@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import go from 'gojs';
 import { GojsAngularModule } from 'gojs-angular';
+import { init, initPalette } from './diagram-init';
 @Component({
   selector: 'app-diagram',
   imports: [GojsAngularModule],
@@ -9,23 +10,18 @@ import { GojsAngularModule } from 'gojs-angular';
   encapsulation: ViewEncapsulation.None,
 })
 export class DiagramComponent {
+  constructor() {
+    this.dia = this.initDiagram();
+  }
+  dia!: go.Diagram;
   // Big object that holds app-level state data
   // As of gojs-angular 2.0, immutability is required of state for change detection
   public state = {
     // Diagram state props
-    diagramNodeData: [
-      { id: 'Alpha', text: 'Alpha', color: 'lightblue' },
-      { id: 'Beta', text: 'Beta', color: 'orange' },
-    ],
-    diagramLinkData: [{ key: -1, from: 'Alpha', to: 'Beta' }],
-    diagramModelData: { prop: 'value' },
+
     skipsDiagramUpdate: false,
 
     // Palette state props
-    paletteNodeData: [
-      { key: 'PaletteNode1', color: 'firebrick' },
-      { key: 'PaletteNode2', color: 'blueviolet' },
-    ],
   }; // end state object
 
   public diagramDivClassName: string = 'myDiagramDiv';
@@ -33,24 +29,11 @@ export class DiagramComponent {
 
   // initialize diagram / templates
   public initDiagram(): go.Diagram {
-    const dia = new go.Diagram({
-      'undoManager.isEnabled': true,
-      model: new go.GraphLinksModel({
-        nodeKeyProperty: 'id',
-        linkKeyProperty: 'key', // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
-      }),
-    });
+    this.dia = init();
+    this.dia.themeManager.changesDivBackground = true;
 
-    // define the Node template
-    dia.nodeTemplate = new go.Node('Auto').add(
-      new go.Shape('RoundedRectangle', { stroke: null }).bind('fill', 'color'),
-      new go.TextBlock({ margin: 8, editable: true }).bindTwoWay(
-        'text',
-        'text',
-      ),
-    );
-
-    return dia;
+    this.dia.themeManager.currentTheme = 'dark';
+    return this.dia;
   }
 
   /**
@@ -65,18 +48,14 @@ export class DiagramComponent {
   };
 
   public initPalette(): go.Palette {
-    const palette = new go.Palette();
-
-    // define the Node template
-    palette.nodeTemplate = new go.Node('Auto').add(
-      new go.Shape('RoundedRectangle', { stroke: null }).bind('fill', 'color'),
-      new go.TextBlock({ margin: 8 }).bind('text', 'key'),
-    );
-
-    palette.model = new go.GraphLinksModel({
-      linkKeyProperty: 'key', // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
-    });
-
+    const palette = initPalette();
     return palette;
+  }
+
+  public changeTheme2() {
+    console.log('changing theme');
+    this.dia = this.initDiagram();
+    this.dia.themeManager.currentTheme = 'light';
+    //  this.dia.themeManager.currentTheme === 'dark' ? 'light' : 'dark';
   }
 }

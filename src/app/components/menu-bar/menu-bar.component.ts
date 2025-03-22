@@ -10,6 +10,8 @@ import { MenuItem } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { Router } from '@angular/router';
+import { DiagramComponent } from '../diagram/diagram.component';
+import { changeTheme } from '../diagram/diagram-init';
 @Component({
   selector: 'app-menu-bar',
   imports: [
@@ -84,5 +86,6 @@ export class MenuBarComponent implements OnInit {
   toggleDarkMode() {
     const element = document.querySelector('html');
     element?.classList.toggle('my-app-dark');
+    DiagramComponent.prototype.changeTheme2();
   }
 }
